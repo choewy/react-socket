@@ -14,7 +14,7 @@ export class SocketClient extends Socket {
   }
 
   connect(): this {
-    return Object.assign(this, this.connect());
+    return Object.assign(this, super.connect());
   }
 
   useConnect() {
