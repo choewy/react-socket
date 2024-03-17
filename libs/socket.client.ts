@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Socket, io } from 'socket.io-client';
 
-import { createUrl } from './helpers';
+import { createUrl, createSocketEventName } from './helpers';
 import {
   SocketClientOptions,
   SocketConnectErrorHandler,
@@ -14,7 +14,6 @@ import {
   SocketReconnectFailedHandler,
   SocketReconnectHandler,
 } from './interfaces';
-import { createSocketEventName } from './socket.event';
 
 export class SocketClient {
   private readonly name: string;
