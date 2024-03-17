@@ -8,18 +8,38 @@ import { SocketEvent } from './socket.event';
 export class SocketClient {
   private readonly name: string;
 
-  private socket: Socket;
+  private _socket: Socket;
 
   constructor({ name, url, namespace, ...opts }: SocketClientOptions) {
-    this.socket = io(createUrl(url, namespace), opts);
+    this._socket = io(createUrl(url, namespace), opts);
     this.name = name ?? 'default';
+  }
+
+  get socket() {
+    return this._socket;
+  }
+
+  get connect() {
+    return this._socket.connect;
+  }
+
+  get disconnect() {
+    return this._socket.disconnect;
+  }
+
+  get emit() {
+    return this._socket.emit;
+  }
+
+  get emitWithAck() {
+    return this._socket.emitWithAck;
   }
 
   useOnEvent<T>(event: string, handler: SocketEventHandler<T>) {
     const eventName = SocketEvent.createEventName(this.name, event);
 
     useEffect(() => {
-      this.socket.on(event, (...payloads) => new SocketEvent(eventName, payloads).dispatch());
+      this._socket.on(event, (...payloads) => new SocketEvent(eventName, payloads).dispatch());
     }, [eventName]);
 
     useEffect(() => {
