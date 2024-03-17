@@ -64,7 +64,7 @@ export class SocketClient {
     const eventName = createSocketEventName(this.name, event);
 
     useEffect(() => {
-      this._socket.on(event, (payloads) => window.dispatchEvent(new CustomEvent(eventName, payloads)));
+      this._socket.on(event, (payloads) => window.dispatchEvent(new CustomEvent(eventName, payloads ?? [])));
     }, [event, eventName]);
 
     useEffect(() => {
