@@ -1,6 +1,6 @@
 {
   "name": "@choewy/react-socket",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Socket.io",
   "main": "dist/libs/index.js",
   "license": "MIT",
