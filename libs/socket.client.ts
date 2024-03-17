@@ -13,10 +13,6 @@ export class SocketClient extends Socket {
     this.name = name ?? 'default';
   }
 
-  connect(): this {
-    return Object.assign(this, super.connect());
-  }
-
   useConnect() {
     useEffect(() => {
       if (this.disconnected) {
@@ -34,7 +30,7 @@ export class SocketClient extends Socket {
 
     useEffect(() => {
       this.on(event, (...payloads) => new SocketEvent(eventName, payloads).dispatch());
-    }, []);
+    }, [eventName]);
 
     useEffect(() => {
       const eventHandler = async (e: Event) => {
@@ -47,6 +43,6 @@ export class SocketClient extends Socket {
       return () => {
         window.removeEventListener(eventName, eventHandler);
       };
-    }, []);
+    }, [eventName, handler]);
   }
 }
