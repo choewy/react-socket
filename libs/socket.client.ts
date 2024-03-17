@@ -57,7 +57,7 @@ export class SocketClient {
 
     useEffect(() => {
       const eventHandler = async (e: Event) => {
-        await handler(...(e as SocketEvent<[unknown]>).detail);
+        await handler(...((e as SocketEvent<[unknown]>).detail ?? []));
       };
 
       window.addEventListener(eventName, eventHandler);
