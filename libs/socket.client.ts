@@ -10,8 +10,11 @@ export class SocketClient extends Socket {
 
   constructor({ name, url, namespace, ...opts }: SocketClientOptions) {
     super(new Manager(createUrl(url, namespace), opts), '', opts);
-
     this.name = name ?? 'default';
+  }
+
+  connect(): this {
+    return Object.assign(this, this.connect());
   }
 
   useConnect() {
