@@ -9,15 +9,10 @@ function App() {
   const [error, setError] = useState<unknown>({});
 
   if (socket) {
-    socket.useOnEvent('connection', () => setConnected(true));
+    socket.useOnEvent('connect', () => setConnected(true));
     socket.useOnEvent('disconnect', () => setConnected(false));
-    socket.useOnEvent<Error>('connect_error', (e) =>
-      setError({
-        name: e.name,
-        message: e.message,
-      }),
-    );
-    socket.useOnEvent<Error>('error', (e) =>
+    socket.useOnEvent('connect_error', (e) => setError(e));
+    socket.useOnEvent('error', (e) =>
       setError({
         name: e.name,
         message: e.message,
