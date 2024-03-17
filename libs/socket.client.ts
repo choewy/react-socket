@@ -25,6 +25,18 @@ export class SocketClient {
     this._socket = io(createUrl(url, namespace), opts);
   }
 
+  get emit() {
+    return this._socket.emit.bind(this._socket);
+  }
+
+  get emitWithAck() {
+    return this._socket.emitWithAck.bind(this._socket);
+  }
+
+  get disconnect() {
+    return this._socket.disconnect.bind(this._socket);
+  }
+
   useConnect() {
     useEffect(() => {
       if (this._socket.connected) {
