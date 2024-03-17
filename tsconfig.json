@@ -9,7 +9,6 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "declarationDir": "./dist/types",
     "outDir": "./dist",
     "sourceMap": true,
     "moduleResolution": "node"
