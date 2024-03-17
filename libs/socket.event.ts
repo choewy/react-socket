@@ -1,10 +1,10 @@
 export class SocketEvent<T> extends CustomEvent<T> {
-  static createName(name: string, event: string) {
+  static createEventName(name: string, event: string) {
     return ['socket_event', name, event].join('.');
   }
 
-  constructor(name: string, event: string, detail: T) {
-    super(SocketEvent.createName(name, event), { detail });
+  constructor(eventName: string, detail: T) {
+    super(eventName, { detail });
   }
 
   dispatch(): void {

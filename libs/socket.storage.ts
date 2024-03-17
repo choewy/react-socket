@@ -11,11 +11,13 @@ export class SocketClientStorage {
       reconnection: true,
       ...opts,
     });
+
     this.socketClientMap.set(name ?? 'default', socketClient);
+
     return socketClient;
   }
 
-  static get(name: string): SocketClient | null {
-    return this.socketClientMap.get(name) ?? null;
+  static get(name: string = 'default'): SocketClient {
+    return this.socketClientMap.get(name);
   }
 }

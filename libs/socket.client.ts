@@ -10,26 +10,30 @@ export class SocketClient extends Socket {
 
   constructor({ name, url, namespace, ...opts }: SocketClientOptions) {
     super(new Manager(createUrl(url, namespace), opts), '', opts);
+
     this.name = name ?? 'default';
   }
 
   useConnect() {
     useEffect(() => {
-      this.connect();
+      if (this.disconnected) {
+        this.connect();
 
-      return () => {
-        this.disconnect();
-      };
+        return () => {
+          this.disconnect();
+        };
+      }
     }, []);
   }
 
   useOnEvent<T>(event: string, handler: SocketEventHandler<T>) {
+    const eventName = SocketEvent.createEventName(this.name, event);
+
     useEffect(() => {
-      this.on(event, (...payloads) => new SocketEvent(this.name, event, payloads).dispatch());
+      this.on(event, (...payloads) => new SocketEvent(eventName, payloads).dispatch());
     }, []);
 
     useEffect(() => {
-      const eventName = SocketEvent.createName(this.name, event);
       const eventHandler = async (e: Event) => {
         const ev = e as SocketEvent<T>;
         await handler(ev.detail);
