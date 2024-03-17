@@ -5,7 +5,12 @@ export class SocketClientStorage {
   private static readonly socketClientMap: Map<string, SocketClient> = new Map();
 
   static create({ name, ...opts }: SocketClientOptions) {
-    const socketClient = new SocketClient(opts);
+    const socketClient = new SocketClient({
+      transports: ['websocket'],
+      autoConnect: false,
+      reconnection: true,
+      ...opts,
+    });
     this.socketClientMap.set(name ?? 'default', socketClient);
     return socketClient;
   }
