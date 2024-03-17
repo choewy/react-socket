@@ -14,7 +14,7 @@ import {
   SocketReconnectFailedHandler,
   SocketReconnectHandler,
 } from './interfaces';
-import { SocketEvent } from './socket.event';
+import { SocketEvent, createSocketEventName } from './socket.event';
 
 export class SocketClient {
   private readonly name: string;
@@ -61,10 +61,10 @@ export class SocketClient {
   useOnEvent(event: 'reconnect_failed', handler: SocketReconnectFailedHandler): void;
   useOnEvent<T extends Array<unknown> = []>(event: string, handler: SocketEventHandler<T>): void;
   useOnEvent(event: string, handler: SocketEventHandler<any>) {
-    const eventName = SocketEvent.createEventName(this.name, event);
+    const eventName = createSocketEventName(this.name, event);
 
     useEffect(() => {
-      this._socket.on(event, (payloads) => new SocketEvent(eventName, payloads).dispatch());
+      this._socket.on(event, (payloads) => window.dispatchEvent(new SocketEvent(eventName, payloads)));
     }, [event, eventName]);
 
     useEffect(() => {
