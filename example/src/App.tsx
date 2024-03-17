@@ -1,20 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { SocketClientStorage } from '@choewy/react-socket';
+
+SocketClientStorage.create({ url: 'ws://localhost:4000' });
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const socket = SocketClientStorage.get('default');
+
+  if (socket) {
+    socket.useConnect();
+    socket.useOnEvent('connect', () => console.log('connect'));
+    socket.useOnEvent('disconnect', () => console.log('disconnect'));
+    socket.useOnEvent('error', () => console.log('error'));
+  }
+
+  return <div></div>;
 }
 
 export default App;
