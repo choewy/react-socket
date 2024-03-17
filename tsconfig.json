@@ -1,25 +1,19 @@
 {
   "compilerOptions": {
-    "module": "esnext",
-    "declaration": true,
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "target": "ES2022",
-    "sourceMap": false,
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "rootDir": ".",
-    "incremental": true,
+    "target": "ES5",
+    "module": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "strictNullChecks": false,
-    "noImplicitAny": false,
-    "strictBindCallApply": false,
-    "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
-    "esModuleInterop": true
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "moduleResolution": "node"
   },
   "include": ["libs"],
-  "exclude": ["node_modules", "example", "temp", "test", "**/*spec.ts"]
+  "exclude": ["node_modules", "dist", "example", "temp", "test", "**/*spec.ts"]
 }

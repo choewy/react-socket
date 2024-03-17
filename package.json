@@ -2,7 +2,7 @@
   "name": "@choewy/react-socket",
   "version": "1.0.15",
   "description": "React Socket.io",
-  "main": "dist/libs/index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "author": "choewy",
   "homepage": "https://github.com/choewy/react-socket#readme",

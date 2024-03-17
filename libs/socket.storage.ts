@@ -17,7 +17,7 @@ export class SocketClientStorage {
     return socketClient;
   }
 
-  static get(name: string = 'default'): SocketClient {
-    return this.socketClientMap.get(name);
+  static get(name: string = 'default'): SocketClient | null {
+    return this.socketClientMap.get(name) ?? null;
   }
 }
