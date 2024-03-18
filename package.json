@@ -22,7 +22,10 @@
   "scripts": {
     "prepare": "husky",
     "lint": "eslint \"libs/**/*.{ts,tsx}\" --fix",
-    "build": "rm -rf dist && tsc"
+    "build": "rm -rf dist && tsc",
+    "version:patch": "npm version patch && git push origin master",
+    "version:minor": "npm version minor && git push origin master",
+    "version:major": "npm version major && git push origin master"
   },
   "dependencies": {
     "react": "^18.2.0",
