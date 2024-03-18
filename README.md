@@ -13,13 +13,13 @@ npm i @choewy/react-socket
 ```tsx
 import { SocketClientStorage } from '@choewy/react-socket';
 
-/** @commant name(default : "default") */
+/** @comment name(default : "default") */
 SocketClientStorage.create({ url: 'ws://localhost:4000' });
 
-/** @commant create socketClient with name */
+/** @comment create socketClient with name */
 SocketClientStorage.create({ name: 'choewy', url: 'ws://localhost:4000' });
 
-/** @commant create socketClient with name and namespace */
+/** @comment create socketClient with name and namespace */
 SocketClientStorage.create({ name: 'choewy:alert', url: 'ws://localhost:4000', namespace: 'alert' });
 ```
 
@@ -28,13 +28,13 @@ SocketClientStorage.create({ name: 'choewy:alert', url: 'ws://localhost:4000', n
 ```tsx
 import { SocketClientStorage } from '@choewy/react-socket';
 
-/** @commant name(default : "default") */
+/** @comment name(default : "default") */
 const defaultSocket = SocketClientStorage.get();
 
-/** @commant name("choewy") */
+/** @comment name("choewy") */
 const choewySocket = SocketClientStorage.get('choewy');
 
-/** @commant name("choewy:alert") */
+/** @comment name("choewy:alert") */
 const choewyAlertSocket = SocketClientStorage.get('choewy:alert');
 ```
 
